@@ -8,10 +8,16 @@ class FakeURLPostType {
 	public $name_singular   = 'Fake URL';
 	public $name_plural     = 'Fake URLs';
 
+	/**
+	 * Register hooks and actions
+	 */
 	public function register() {
 		add_action( 'init', [ $this, 'create_post_type' ] );
 	}
 
+	/*
+	 * Create the custom post type fakeurl
+	 */
 	public function create_post_type() {
 
 		register_post_type(

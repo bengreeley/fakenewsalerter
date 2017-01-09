@@ -10,6 +10,9 @@ class FakeURL {
 		$this->post_type = new FakeURLPostType();
 	}
 
+	/**
+	 * Register hooks and actions
+	 */
 	public function register() {
 		$this->post_type->register();
 
@@ -17,6 +20,9 @@ class FakeURL {
 		add_action( 'save_post',      [ $this, 'save_field' ] );
 	}
 
+	/**
+	 * Register the meta boxes for this CPT
+	 */
 	public function register_meta_boxes() {
 
 		add_meta_box(
@@ -25,10 +31,6 @@ class FakeURL {
 			[ $this, 'display_fields' ]
 		);
 
-	}
-
-	public function get_slug() {
-		return $this->post_type->slug;
 	}
 
 	/**
@@ -49,6 +51,13 @@ class FakeURL {
 	        value = "<?php echo esc_attr( $value );?>" /></label><?php
 	}
 
+	/**
+	 * Retrieves the saved value for a passed post.
+	 * For now this is just being stored in the title field to save space, but might go someplace else eventually
+	 * @param $post
+	 *
+	 * @return string|void
+	 */
 	public function get_value( $post ) {
 
 		if( ! is_a( $post, 'WP_Post' ) ) {
@@ -59,6 +68,10 @@ class FakeURL {
 
 	}
 
+	/**
+	 * Save the custom field.
+	 * @param $post_id
+	 */
 	public function save_field( $post_id ) {
 
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -86,6 +99,14 @@ class FakeURL {
 
 		}
 
+	}
+
+	/**
+	 * Accessor to retrieve slug
+	 * @return string
+	 */
+	public function get_slug() {
+		return $this->post_type->slug;
 	}
 
 }
