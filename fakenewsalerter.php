@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Fake News Alerter Server
  * Description: Server for a theoretical fake news detector
- * Version:     .1
+ * Version:     .2
  * Author:      Ben Greeley
  * Author URI:  http://www.bengreeley.com/
  */
